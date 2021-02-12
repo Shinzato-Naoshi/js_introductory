@@ -11,6 +11,8 @@ function start_game() {
             counter.innerText = count
         }, 200)
         action_btn.innerText = 'stop'
+    } else if (btn_text === 'stop') {
+        console.log('This is stop')
     }
 }
 action_btn.addEventListener('click', start_game)
