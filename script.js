@@ -1,7 +1,8 @@
-// タイトルの文字数チェック
+// タイトルの文字数チェック + 本文の文字数を制限する
 
 // 要素情報取得
 const $title = $('.title')
+const $desc = $('.desc') // 追加
 const $errors = $('.errors')
 const $submit_btn = $('.submit_btn')
 
@@ -24,11 +25,29 @@ $title.on('keyup', () => {
     }
 })
 
+// 本文のkeyupイベント発生時の処理
+$desc.on('keyup', () => {
+    let error_messages = []
+    let desc_length = $desc.val().length
+    if (desc_length < 1) error_messages.push('本文は必須です')
+    if (desc_length > 25) error_messages.push('本文は25文字以内でお願いします')
+
+    if (error_messages.length > 0) {
+        for (let cnt = 0; cnt < error_messages.length; cnt++) {
+            $errors.append('<li>' + error_messages[cnt] + '</li>')
+        }
+        $submit_btn.prop('disabled', true)
+    } else {
+        $submit_btn.prop('disabled', false)
+    }
+})
+
 
 // JavaScript
 
 // 要素取得
 // const title = document.getElementsByClassName('title')
+// const desc = document.getElementsByClassName('desc')
 // const errors = document.getElementsByClassName('errors')
 // const submit_btn = document.getElementsByClassName('submit_btn')
 
@@ -62,7 +81,28 @@ $title.on('keyup', () => {
 //         // console.log(title_length)
 //         // console.log(error_messages[0])
 //     })
+
+//     // 本文のkeyupイベント
+//     desc[0].addEventListener('keyup', () => {
+//         let error_messages = []
+//         let desc_length = desc[0].value.length
+//         if (desc_length < 1) error_messages.push('本文は必須です')
+//         if (desc_length > 25) error_messages.push('本文は25文字以内でお願いします')
+
+//         if (error_messages.length > 0) {
+//             for (let cnt = 0; cnt < error_messages.length; cnt++) {
+//                 let li = document.createElement('li')
+//                 li.appendChild(document.createTextNode(error_messages[cnt]))
+//                 errors[0].appendChild(li)
+//             }
+//             submit_btn[0].disabled = true
+//         } else {
+//             submit_btn[0].disabled =false
+//         }
+//     })
 // }
+
+
 
     // 1、2どちらの書き方でも表示は出来た
 
