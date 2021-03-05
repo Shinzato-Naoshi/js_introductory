@@ -22,3 +22,11 @@ html, body, div, header, section, p, span, form, label button {
     font-weight: 600;
     background-color: #F9D535;
 }
+
+.form_group {
+    margin-bottom: 15px;
+}
+
+ul.errors li {
+    flood-color: #ff0000;
+}
